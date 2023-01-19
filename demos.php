@@ -1,22 +1,22 @@
 <?php
-$salts = null;
-for ($number = 1;$number <= 10; $number++) {
-    if (time()%2 == 0) {
-        if ($number % 2 == 0 or $number % 3 == 0) {
-            $salt[$number] = chr(rand(97, 122));
-        } else {
-            $salt[$number] = rand(0, 9);
-        }
+$data = 65536;
+for ($i=1; $i<=6; $i++) {
+    $data *= 65536;
+}
+
+$data = $data*hexdec('ffff');
+
+$data = explode(',',number_format($data));
+
+$demo = true;
+$number = 0;
+while ($demo) {
+    if (isset($data[$number])) {
+        $number_list = $number_list.$data[$number];
+        $number ++;
     } else {
-        if ($number % 2 != 0 or $number % 3 != 0) {
-            $salt[$number] = chr(rand(97, 122));
-        } else {
-            $salt[$number] = rand(0, 9);
-        }
+        $demo = false;
     }
 }
-for ($number = 1;$number <= 10; $number++) {
-    $salts = $salts.$salt[$number];
-}
-// 定义 ukey
-echo "XFUKEY".rand(1000,9999).time().$salts;
+
+echo $number_list;

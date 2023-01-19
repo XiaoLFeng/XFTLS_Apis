@@ -21,4 +21,4 @@ $Mail = new SendMail();
 $GetData = array(
     'ssid'=>urldecode(htmlspecialchars($_GET['ssid'])),
     ''
-)
+);

@@ -51,8 +51,8 @@ class ApiFunction
 
     // 获取用户 ukey （普通密钥）
     /**
-     * @param $ukey
-     * @return bool
+     * @param $ukey 输入密钥
+     * @return bool 返回值
      */
     public function Get_ukey($ukey): bool {
         // 判断key

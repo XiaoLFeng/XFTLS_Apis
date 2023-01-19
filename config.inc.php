@@ -47,8 +47,10 @@ $setting['TABLE']['acgurl'] = 'tls_acgurl';
 $setting['TABLE']['user_ssid'] = 'tls_ssid';
 // TLS验证码数据表
 $setting['TABLE']['captcha'] = 'tls_captcha';
-// TLS_IP数据表
-$setting['TABLE']['ip'] = 'tls_ip_list';
+// TLS_IPv4数据表
+$setting['TABLE']['ipv4'] = 'tls_ipv4_list';
+// TLS_IPv6数据表
+$setting['TABLE']['ipv6'] = 'tls_ipv6_list';
 
 /******************* 邮箱管理 *******************/
 // 邮箱地址
