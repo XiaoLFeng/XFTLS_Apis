@@ -1,0 +1,14 @@
+{
+  "name": "vendor_name/XF_Apis",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "xiao_lfeng",
+      "email": "gm@x-lf.cn"
+    }
+  ],
+  "require": {
+  }
+}
