@@ -58,34 +58,29 @@ if ($ApiFunction->Get_UserSSID($PostData['ssid'])) {
                     header("HTTP/1.1 403 Forbidden");
                 }
             } else {
-
-            }
-        } else {
-            // 检查邮件发送
-            if ($Mail->Mailer('code',$PostData['data']['P_email'],$Result_Captcha_Object->code,$Result_Captcha_Object->time,$setting['CAPTCHA_TIME'])) {
                 // 编译数据
                 $data = array(
-                    'output'=>'CODE_EFFECTIVE',
-                    'code'=>200,
-                    'info'=>'您的验证码依旧有效',
-                    'data'=>array(
-                        'code'=>$Result_Captcha_Object->code,
-                        'time'=>date("Y-m-d H:i:s",$Result_Captcha_Object->time+$setting['CAPTCHA_TIME']),
-                    )
-                );
-                // 输出数据
-                $ApiFunction->logs('mailer_ code','邮件发送',1);
-            } else {
-                // 编译数据
-                $data = array(
-                    'output'=>'SEND_EMAIL_FAIL',
+                    'output'=>'UPLOAD_FAIL',
                     'code'=>403,
-                    'info'=>'参数 Server[Send_Email_Fail] 缺失/错误，邮件发送失败',
+                    'info'=>'参数 Server[upload_fail] 缺失/错误，数据库上传失败',
                 );
                 // 输出数据
-                $ApiFunction->logs('mailer_code','邮件发送',0,'Server_SendEmailFail');
+                $ApiFunction->logs('mailer_code','邮件发送',0,'Server_SqlUploadFail');
                 header("HTTP/1.1 403 Forbidden");
             }
+        } else {
+            // 编译数据
+            $data = array(
+                'output'=>'CODE_EFFECTIVE',
+                'code'=>200,
+                'info'=>'您的验证码依旧有效',
+                'data'=>array(
+                    'code'=>$Result_Captcha_Object->code,
+                    'time'=>date("Y-m-d H:i:s",$Result_Captcha_Object->time+$setting['CAPTCHA_TIME']),
+                )
+            );
+            // 输出数据
+            $ApiFunction->logs('mailer_ code','邮件发送',1);
         }
     } elseif (!empty($PostData['data']['P_phone']) and empty($PostData['data']['P_email']) and preg_match('/^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/', $PostData['data']['P_phone'])) {
 
