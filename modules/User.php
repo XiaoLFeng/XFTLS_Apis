@@ -34,7 +34,7 @@ class User
         if (!empty($email) and preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) {
             if (!empty($username) and preg_match('/^\w+$/', $username)) {
                 if (!empty($password) and preg_match("/^[\!\@\#\$\%\^\&\*\(\)\,\.\/\<\>\?\;\:\[\]\\|\-\=\ \w+]+$/", $password)) {
-                    if (preg_match("/[^;']+/",$desc)) {
+                    if (preg_match("/[^;' ]+/",$desc)) {
                         if (!empty($regip) and preg_match("/((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/",$regip)) {
                             return 'TRUE';
                         } else {
