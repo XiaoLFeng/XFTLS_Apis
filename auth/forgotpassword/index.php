@@ -87,7 +87,7 @@ if ($ApiFunction->Get_UserSSID($PostData['ssid'])) {
                     if ($Mail->Mailer('forgotpassword',$PostData['data']['P_email'],$code,time(),$setting['CAPTCHA_TIME'])) {
                         // 编译数据
                         $data = array(
-                            'output'=>'SUCCESS',
+                            'output'=>'EMAIL_SEND',
                             'code'=>200,
                             'info'=>'重置邮件已发送',
                         );
@@ -96,7 +96,7 @@ if ($ApiFunction->Get_UserSSID($PostData['ssid'])) {
                     } else {
                         // 编译数据
                         $data = array(
-                            'output'=>'Email_Fail',
+                            'output'=>'EMAIL_FAIL',
                             'code'=>403,
                             'info'=>'邮件 Email_Fail 发送失败',
                         );
