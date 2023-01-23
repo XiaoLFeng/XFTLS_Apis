@@ -63,6 +63,7 @@ if ($ApiFunction->Get_UserSSID($PostData['ssid'])) {
                             'info' => '服务器 Server[upload] 用户新建成功',
                         );
                         // 输出数据
+                        mysqli_query($SqlConn,"UPDATE ".$setting['TABLE']['captcha']." SET `use`='TRUE' WHERE `email`='".$PostData['data']['P_email']."' AND `type`='register' AND `time`>='".(time()-$setting['CAPTCHA_TIME'])."' AND `use`='FALSE'");
                         $Mail->Mailer('register_over', $Ready_Data['email']);
                         $ApiFunction->logs('api_register', '新建用户', 1);
                     } else {
@@ -93,7 +94,7 @@ if ($ApiFunction->Get_UserSSID($PostData['ssid'])) {
                     if ($Mail->Mailer('register',$PostData['data']['P_email'],$code,time(),$setting['CAPTCHA_TIME'])) {
                         // 编译数据
                         $data = array(
-                            'output'=>'SUCCESS',
+                            'output'=>'EMAIL_SEND',
                             'code'=>200,
                             'info'=>'邮件已发送',
                         );
@@ -102,9 +103,9 @@ if ($ApiFunction->Get_UserSSID($PostData['ssid'])) {
                     } else {
                         // 编译数据
                         $data = array(
-                            'output'=>'Email_Fail',
+                            'output'=>'EMAIL_FAIL',
                             'code'=>403,
-                            'info'=>'邮件 Email_Fail 发送失败',
+                            'info'=>'邮件 EMAIL_FAIL 发送失败',
                         );
                         // 输出数据
                         $ApiFunction->logs('api_register','邮件发送',0,'Email_Fail');
