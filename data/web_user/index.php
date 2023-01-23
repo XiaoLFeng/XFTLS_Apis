@@ -4,8 +4,8 @@
  * 全部代码未开源
  */
 
-/** @var TYPE_NAME $SqlConn */
-/** @var TYPE_NAME $setting */
+/** @var string $SqlConn */
+/** @var string $setting */
 
 // 载入头
 include $_SERVER['DOCUMENT_ROOT'].'/header-control.php';
@@ -19,6 +19,7 @@ $GetUid = htmlspecialchars($_GET['uid']);
 $GetUserName = htmlspecialchars($_GET['username']);
 $GetEmail = htmlspecialchars($_GET['email']);
 $GetSSID = htmlspecialchars($_GET['ssid']);
+$GetUkey = htmlspecialchars($_GET['ukey']);
 
 // 函数构建
 if ($GetSSID == $ApiFunction->Get_SSID()) {
@@ -63,7 +64,7 @@ if ($GetSSID == $ApiFunction->Get_SSID()) {
         $data = array(
             'output'=>'USER_NONE',
             'code'=>403,
-            'info'=>'参数 Query[uid/username/email] 无用户',
+            'info'=>'参数 Query[uid/username/email/ukey] 无用户',
         );
         // 输出数据
         $ApiFunction->logs('user_search','查询用户',0,'Query_uid/username/email');
@@ -87,13 +88,15 @@ if ($GetSSID == $ApiFunction->Get_SSID()) {
 echo json_encode($data,JSON_UNESCAPED_UNICODE);
 
 function use_type(): string {
-    global $GetUid,$GetEmail,$GetUserName;
-    if (!empty($GetUid) and empty($GetUserName) and empty($GetEmail)) {
+    global $GetUid,$GetEmail,$GetUserName,$GetUkey;
+    if (!empty($GetUid) and empty($GetUserName) and empty($GetEmail) and empty($GetUkey)) {
         return "id='$GetUid'";
-    } elseif (empty($GetUid) and !empty($GetUserName) and empty($GetEmail)) {
+    } elseif (empty($GetUid) and !empty($GetUserName) and empty($GetEmail) and empty($GetUkey)) {
         return "username='$GetUserName'";
-    } elseif (empty($GetUid) and empty($GetUserName) and !empty($GetEmail)) {
+    } elseif (empty($GetUid) and empty($GetUserName) and !empty($GetEmail) and empty($GetUkey)) {
         return "email='$GetEmail'";
+    } elseif (empty($GetUid) and empty($GetUserName) and empty($GetEmail) and !empty($GetUkey)) {
+        return "ukey='$GetUkey'";
     } else {
         return "id='NULL'";
     }
