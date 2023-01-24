@@ -29,27 +29,38 @@ if (!empty($GetData['key'])) {
     $Result_Acgurl = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['Service']['Acgurl']." WHERE access_key='".$GetData['key']."'");
     $Result_Acgurl_Object = mysqli_fetch_object($Result_Acgurl);
     if ($Result_Acgurl_Object->id != null) {
-        if ($GetData['type'] == 'json') {
-            $url_data = explode(PHP_EOL,$Result_Acgurl_Object->url);
+        if ($Result_Acgurl_Object->open == 1) {
+            if ($GetData['type'] == 'json') {
+                $url_data = explode(PHP_EOL,$Result_Acgurl_Object->url);
+                // 编译数据
+                $data = array(
+                    'output'=>'SUCCESS',
+                    'code'=>200,
+                    'info'=>'数据输出完毕',
+                    'data'=>[
+                        'url'=>str_replace(array("\r\n", "\r", "\n"),'',$url_data[array_rand($url_data)]),
+                    ],
+                );
+                // 输出数据
+                $ApiFunction->logs('service_acgurl','随机图库_Json',1);
+            } else {
+                header("Content-Type: image/jpeg;text/html; charset=utf-8");
+                $url_data = explode(PHP_EOL,$Result_Acgurl_Object->url);
+                $Image_Url = file_get_contents(str_replace(array("\r\n", "\r", "\n"),'',$url_data[array_rand($url_data)]),true);
+                echo $Image_Url;
+                // 输出数据
+                $ApiFunction->logs('service_acgurl','随机图库_Url',1);
+                exit();
+            }
+        } else {
             // 编译数据
             $data = array(
-                'output'=>'SUCCESS',
+                'output'=>'CLOSED',
                 'code'=>200,
-                'info'=>'数据输出完毕',
-                'data'=>[
-                    'url'=>str_replace(array("\r\n", "\r", "\n"),'',$url_data[array_rand($url_data)]),
-                ],
+                'info'=>'图库已关闭',
             );
             // 输出数据
-            $ApiFunction->logs('service_acgurl','随机图库_Json',1);
-        } else {
-            header("Content-Type: image/jpeg;text/html; charset=utf-8");
-            $url_data = explode(PHP_EOL,$Result_Acgurl_Object->url);
-            $Image_Url = file_get_contents(str_replace(array("\r\n", "\r", "\n"),'',$url_data[array_rand($url_data)]),true);
-            echo $Image_Url;
-            // 输出数据
-            $ApiFunction->logs('service_acgurl','随机图库_Url',1);
-            exit();
+            $ApiFunction->logs('service_acgurl','图库关闭',1);
         }
     } else {
         // 编译数据
