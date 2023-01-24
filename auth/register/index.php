@@ -14,9 +14,11 @@ include $_SERVER['DOCUMENT_ROOT'].'/header-control.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/modules/ApiFunction.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/modules/User.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/modules/Mailer.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/modules/Key.php';
 $ApiFunction = new ApiFunction();
 $User = new User();
 $Mail = new SendMail();
+$Key = new Key();
 
 // 获取参数
 // POST
@@ -52,7 +54,7 @@ if ($ApiFunction->Get_UserSSID($PostData['ssid'])) {
                         'desc' => $PostData['data']['P_desc'],
                         'regip' => $PostData['data']['P_regip'],
                         'regtime' => date('Y-m-d'),
-                        'ukey' => $ApiFunction->ukey_create(10),
+                        'ukey' => $Key->ukey_create(10),
                     );
 
                     // 输入数据进入数据库
