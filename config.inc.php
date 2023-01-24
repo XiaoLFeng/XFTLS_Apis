@@ -28,7 +28,7 @@ $setting['SQL']['host'] = '127.0.0.1';
 // 数据库名字
 $setting['SQL']['dbname'] = 'xf_tls';
 // 数据库用户名
-$setting['SQL']['username'] = 'root';
+$setting['SQL']['username'] = 'xf_tls';
 // 数据库密码
 $setting['SQL']['password'] = 'YNily20040227';
 
@@ -51,6 +51,8 @@ $setting['TABLE']['captcha'] = 'tls_captcha';
 $setting['TABLE']['ipv4'] = 'tls_ipv4_list';
 // TLS_IPv6数据表
 $setting['TABLE']['ipv6'] = 'tls_ipv6_list';
+// Service_Acgurl数据表
+$setting['TABLE']['Service']['Acgurl'] = 'tls_service_acgurl';
 
 /******************* 邮箱管理 *******************/
 // 邮箱地址
