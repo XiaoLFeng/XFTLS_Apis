@@ -63,6 +63,12 @@ if ($ApiFunction->Get_ukey($GetData['ukey'])) {
                         'access_key'=>$Result_Acgurl_Object->access_key,
                         'url'=>$Result_Acgurl_Object->url,
                         'open'=>$Result_Acgurl_Object->open,
+                        'manage'=>[
+                            'domain_open'=>$Result_Acgurl_Object->domain_open,
+                            'domain_list'=>$Result_Acgurl_Object->domain,
+                            'blacklist_open'=>$Result_Acgurl_Object->blacklist_open,
+                            'blacklist_list'=>$Result_Acgurl_Object->blacklist,
+                        ],
                     ];
                     $number ++;
                 }
