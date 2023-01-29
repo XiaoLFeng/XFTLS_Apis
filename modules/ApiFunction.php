@@ -55,24 +55,28 @@ class ApiFunction
      * @return bool 返回值
      */
     public function Get_ukey($ukey): bool {
-        // 判断key
-        if (empty($ukey)) {
-            return false;
-        } else {
-            global $SqlConn,$setting;
-            // 获取用户数据库
-            $Result_User = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['user']." WHERE ukey='$ukey'");
-            $Result_User_Object = mysqli_fetch_object($Result_User);
-            // 判断用户是否有权限
-            if ($Result_User_Object->id != null and $Result_User_Object->ban != 1) {
-                // 写入Log
-                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_ukey','（密钥查询）调用成功，调用ukey=$ukey',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
-                return true;
-            } else {
-                // 写入Log
-                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_ukey','（密钥查询）调用失败，调用ukey=$ukey',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+        if (preg_match('/^XFUKEY[0-9]{14}[A-za-z0-9]{10}/',$ukey)) {
+            // 判断key
+            if (empty($ukey)) {
                 return false;
+            } else {
+                global $SqlConn,$setting;
+                // 获取用户数据库
+                $Result_User = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['user']." WHERE ukey='$ukey'");
+                $Result_User_Object = mysqli_fetch_object($Result_User);
+                // 判断用户是否有权限
+                if ($Result_User_Object->id != null and $Result_User_Object->ban != 1) {
+                    // 写入Log
+                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_ukey','（密钥查询）调用成功，调用ukey=$ukey',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+                    return true;
+                } else {
+                    // 写入Log
+                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_ukey','（密钥查询）调用失败，调用ukey=$ukey',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+                    return false;
+                }
             }
+        } else {
+            return false;
         }
     }
 
