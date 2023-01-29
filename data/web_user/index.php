@@ -4,8 +4,8 @@
  * 全部代码未开源
  */
 
-/** @var string $SqlConn */
-/** @var string $setting */
+/** @var mysqli $SqlConn 数据库链接参数 */
+/** @var string $setting 配置文件 */
 
 // 载入头
 include $_SERVER['DOCUMENT_ROOT'].'/header-control.php';

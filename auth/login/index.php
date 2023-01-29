@@ -5,8 +5,8 @@
  */
 
 /**
- * @var String $SqlConn
- * @var String $setting
+ * @var mysqli $SqlConn 数据库链接参数
+ * @var string $setting 配置文件
  */
 
 // 载入头
