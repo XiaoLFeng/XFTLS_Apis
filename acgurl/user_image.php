@@ -113,7 +113,7 @@ if ($ApiFunction->Get_ukey($GetData['ukey'])) {
     $data = array(
         'output'=>'UEKY_DENY',
         'code'=>403,
-        'info'=>'参数 All[ukey] 缺失/错误'
+        'info'=>'参数 Query[ukey] 缺失/错误'
     );
     // 输出数据
     $ApiFunction->logs('service_acgurl_user','密钥验证',0,'Query_ukey');
