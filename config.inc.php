@@ -53,6 +53,8 @@ $setting['TABLE']['ipv4'] = 'tls_ipv4_list';
 $setting['TABLE']['ipv6'] = 'tls_ipv6_list';
 // Service_Acgurl数据表
 $setting['TABLE']['Service']['Acgurl'] = 'tls_service_acgurl';
+// Service_Acgurl_Log数据表
+$setting['TABLE']['Service']['Acgurl_log'] = 'tls_service_acgurl_logs';
 
 /******************* 邮箱管理 *******************/
 // 邮箱地址
