@@ -14,9 +14,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/header-control.php';
 
 // 载入class
 require_once $_SERVER['DOCUMENT_ROOT'].'/modules/ApiFunction.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/modules/User.php';
 $ApiFunction = new ApiFunction();
-$User = new User();
 
 // 获取参数
 // GET
@@ -43,6 +41,8 @@ if (!empty($GetData['key'])) {
                 );
                 // 输出数据
                 $ApiFunction->logs('service_acgurl','随机图库_Json',1);
+                $url_log = $_SERVER['HTTP_REFERER'];
+                mysqli_query($SqlConn,"INSERT INTO ".$setting['TABLE']['Service']['Acgurl_log']." (`key`,`data`,`ip`,`uid`,`date`,`url`) VALUES ('".$GetData['key']."','调用成功','".$_SERVER["REMOTE_ADDR"]."','".$Result_Acgurl_Object->uid."','".date('Y-m-d H:i:s')."','".$url_log."')");
             } else {
                 header("Content-Type: image/jpeg;text/html; charset=utf-8");
                 $url_data = explode(PHP_EOL,$Result_Acgurl_Object->url);
@@ -50,6 +50,8 @@ if (!empty($GetData['key'])) {
                 echo $Image_Url;
                 // 输出数据
                 $ApiFunction->logs('service_acgurl','随机图库_Url',1);
+                $url_log = $_SERVER['HTTP_REFERER'];
+                mysqli_query($SqlConn,"INSERT INTO ".$setting['TABLE']['Service']['Acgurl_log']." (`key`,`data`,`ip`,`uid`,`date`,`url`) VALUES ('".$GetData['key']."','调用成功','".$_SERVER["REMOTE_ADDR"]."','".$Result_Acgurl_Object->uid."','".date('Y-m-d H:i:s')."','".$url_log."')");
                 exit();
             }
         } else {
@@ -61,6 +63,7 @@ if (!empty($GetData['key'])) {
             );
             // 输出数据
             $ApiFunction->logs('service_acgurl','图库关闭',1);
+            mysqli_query($SqlConn,"INSERT INTO ".$setting['TABLE']['Service']['Acgurl_log']." (`key`,`data`,`ip`,`uid`,`date`) VALUES ('".$GetData['key']."','图库关闭','".$_SERVER["REMOTE_ADDR"]."','".$Result_Acgurl_Object->uid."','".date('Y-m-d H:i:s')."')");
         }
     } else {
         // 编译数据
