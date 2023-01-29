@@ -4,7 +4,7 @@
  * 全部代码未开源
  */
 
-/** @var TYPE_NAME $SqlConn */
+/** @var TYPE_NAME $SqlConn
 /** @var TYPE_NAME $setting */
 
 // 载入头
