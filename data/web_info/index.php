@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/modules/ApiFunction.php';
 $ApiFunction = new ApiFunction();
 
 // 获取参数
-$GetSSID = htmlspecialchars($_GET['ssid']);
+$GetSSID = urldecode(htmlspecialchars($_GET['ssid']));
 
 // 函数构建
 if ($GetSSID == $ApiFunction->Get_SSID()) {
