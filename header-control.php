@@ -4,8 +4,10 @@
  * 未开源
  */
 
-/** @var TYPE_NAME $SqlConn */
-/** @var TYPE_NAME $setting */
+/**
+ * @var mysqli $SqlConn 数据库链接参数
+ * @var string $setting 配置文件
+ */
 
 // 设置请求头
 header('Content-Type: application/json;charset=utf-8');

@@ -4,7 +4,9 @@
  * 全部代码未开源
  */
 
-/** @var TYPE_NAME $SqlConn */
+/**
+ * @var mysqli $SqlConn 数据库链接参数
+ */
 /** @var TYPE_NAME $setting */
 
 // 载入头
