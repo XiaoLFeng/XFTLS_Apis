@@ -5,7 +5,7 @@
  */
 
 /** @var mysqli $SqlConn 数据库链接参数 */
-/** @var string $setting 配置文件 */
+/** @var array $setting 参数配置 */
 
 // 载入头
 include $_SERVER['DOCUMENT_ROOT'].'/header-control.php';

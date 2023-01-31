@@ -6,7 +6,7 @@
 
 /**
  * @var mysqli $SqlConn 数据库链接参数
- * @var string $setting 配置文件
+ * @var array $setting 参数配置
  */
 
 // 载入头
@@ -43,7 +43,6 @@ if ($ApiFunction->Get_ukey($GetData['ukey'])) {
                 $Result_AcgurlLog = null;
                 $Result_AcgurlLog_Row = null;
                 for ($j=0; $j<=23; $j++) {
-                    /** @noinspection PhpIllegalStringOffsetInspection */
                     $Result_AcgurlLog = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['Service']['Acgurl_log']." WHERE `uid`=".$Result_User_Object->id." AND `date` LIKE '%".date('Y-m-d H',strtotime(date('Y-m-d',strtotime('-'.$i.' days'))." 00:00:00")+($j*3600))."%'");
                     $Result_AcgurlLog_Row = mysqli_num_rows($Result_AcgurlLog);
                     $array_result[$i]['data'][$j] = $Result_AcgurlLog_Row;

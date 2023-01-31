@@ -6,7 +6,7 @@
 
 /**
  * @var mysqli $SqlConn 数据库链接参数
- * @var array $setting
+ * @var array $setting 参数配置
  */
 
 // 载入头

@@ -5,8 +5,8 @@
  */
 
 /**
- * @var TYPE_NAME $SqlConn
- * @var TYPE_NAME $setting
+ * @var mysqli $SqlConn 数据库链接参数
+ * @var array $setting 参数配置
  */
 
 // 载入头
