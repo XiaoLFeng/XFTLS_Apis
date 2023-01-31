@@ -6,7 +6,7 @@
 
 /**
  * @var mysqli $SqlConn 数据库链接参数
- * @var string $setting 配置文件
+ * @var array $setting 参数配置 参数配置
  */
 
 // 设置请求头
