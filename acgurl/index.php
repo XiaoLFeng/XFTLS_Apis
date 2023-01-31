@@ -83,7 +83,7 @@ if (!empty($GetData['key'])) {
                 // 如果为 1 为 domain 白名单
                 // 从 Referer 数据中查询数据信息
                 preg_match('/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/',$_SERVER['HTTP_REFERER'],$UserReferer);
-                if (in_array($UserReferer[1],explode(';',$Result_Acgurl_Object->domain))) {
+                if (in_array($UserReferer[0],explode(';',$Result_Acgurl_Object->domain))) {
                     $data = OpenToUse($Result_Acgurl_Object, $GetData, $ApiFunction, $SqlConn, $setting);
                 } else {
                     // 编译数据
@@ -99,7 +99,7 @@ if (!empty($GetData['key'])) {
             } elseif ($Result_Acgurl_Object->domain_open == 2) {
                 // 如果为 2 为 domain 黑名单
                 preg_match('/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/',$_SERVER['HTTP_REFERER'],$UserReferer);
-                if (!in_array($UserReferer[1],explode(';',$Result_Acgurl_Object->domain))) {
+                if (!in_array($UserReferer[0],explode(';',$Result_Acgurl_Object->domain))) {
                     $data = OpenToUse($Result_Acgurl_Object, $GetData, $ApiFunction, $SqlConn, $setting);
                 } else {
                     // 编译数据
@@ -127,7 +127,7 @@ if (!empty($GetData['key'])) {
                     // 如果为 1 为 domain 白名单
                     // 从 Referer 数据中查询数据信息
                     preg_match('/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/',$_SERVER['HTTP_REFERER'],$UserReferer);
-                    if (in_array($UserReferer[1],explode(';',$Result_Acgurl_Object->domain))) {
+                    if (in_array($UserReferer[0],explode(';',$Result_Acgurl_Object->domain))) {
                         $data = OpenToUse($Result_Acgurl_Object, $GetData, $ApiFunction, $SqlConn, $setting);
                     } else {
                         // 编译数据
@@ -143,7 +143,7 @@ if (!empty($GetData['key'])) {
                 } elseif ($Result_Acgurl_Object->domain_open == 2) {
                     // 如果为 2 为 domain 黑名单
                     preg_match('/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/',$_SERVER['HTTP_REFERER'],$UserReferer);
-                    if (!in_array($UserReferer[1],explode(';',$Result_Acgurl_Object->domain))) {
+                    if (!in_array($UserReferer[0],explode(';',$Result_Acgurl_Object->domain))) {
                         $data = OpenToUse($Result_Acgurl_Object, $GetData, $ApiFunction, $SqlConn, $setting);
                     } else {
                         // 编译数据

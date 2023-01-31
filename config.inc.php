@@ -18,7 +18,7 @@ $setting['WEB']['Start'] = TRUE;
 // 站点开启 Debug 模式
 $setting['WEB']['DeBUG'] = FALSE;
 // 站点通信密钥
-$setting['SSID'] = "20040227";
+$setting['ssid'] = "20040227";
 // 验证码有效时间
 $setting['CAPTCHA_TIME'] = 900;
 
@@ -45,6 +45,8 @@ $setting['TABLE']['avatar'] = 'tls_avatar';
 $setting['TABLE']['acgurl'] = 'tls_acgurl';
 // TLS用户高级SSID数据表
 $setting['TABLE']['user_ssid'] = 'tls_ssid';
+// TLS用户开源OKey数据表
+$setting['TABLE']['okey'] = 'tls_okey';
 // TLS验证码数据表
 $setting['TABLE']['captcha'] = 'tls_captcha';
 // TLS_IPv4数据表
