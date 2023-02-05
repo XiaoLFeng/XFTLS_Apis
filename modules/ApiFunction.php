@@ -2,21 +2,8 @@
 
 class ApiFunction
 {
-    // 基本函数
-    public function ip() {
-        // 日志记录时间
-        return $_SERVER["REMOTE_ADDR"];
-    }
-
     /**
-     * @return false|string
-     */
-    public function now_time() {
-        return date('Y-m-d H:i:s');
-    }
-
-    // 写入Logs函数
-    /**
+     * 写入Logs函数
      * @param $data string 参数简称
      * @param $type string 主要内容
      * @param $function int 是否是成功的
@@ -32,12 +19,12 @@ class ApiFunction
             $function = '成功';
         }
         if (empty($parameter)) {
-            mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (`belong`,`info`,`remark`,`ip`,`referer`,`time`) VALUES ('$data','（" . $type . "）调用" . $function . "',NULL,'" . $this->ip() . "','".$_SERVER['HTTP_REFERER']."','" . $this->now_time() . "')");
+            mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (`belong`,`info`,`remark`,`ip`,`referer`,`time`) VALUES ('$data','（" . $type . "）调用" . $function . "',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','".$_SERVER['HTTP_REFERER']."','" . date('Y-m-d H:i:s') . "')");
         } else {
             if ($function == '失败') {
-                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (`belong`,`info`,`remark`,`ip`,`referer`,`time`) VALUES ('$data','（" . $type . "）调用" . $function . "，参数缺失/错误（".$parameter."）',NULL,'" . $this->ip() . "','".$_SERVER['HTTP_REFERER']."','" . $this->now_time() . "')");
+                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (`belong`,`info`,`remark`,`ip`,`referer`,`time`) VALUES ('$data','（" . $type . "）调用" . $function . "，参数缺失/错误（".$parameter."）',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','".$_SERVER['HTTP_REFERER']."','" . date('Y-m-d H:i:s') . "')");
             } else {
-                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (`belong`,`info`,`remark`,`ip`,`referer`,`time`) VALUES ('$data','（" . $type . "）开发错误，请查询原因（错误位置：function_logs）',NULL,'" . $this->ip() . "','".$_SERVER['HTTP_REFERER']."','" . $this->now_time() . "')");
+                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (`belong`,`info`,`remark`,`ip`,`referer`,`time`) VALUES ('$data','（" . $type . "）开发错误，请查询原因（错误位置：function_logs）',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','".$_SERVER['HTTP_REFERER']."','" . date('Y-m-d H:i:s') . "')");
             }
         }
     }
@@ -72,11 +59,11 @@ class ApiFunction
                 // 判断用户是否有权限
                 if ($Result_User_Object->id != null and $Result_User_Object->ban != 1) {
                     // 写入Log
-                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_ukey','（密钥查询）调用成功，调用ukey=$ukey',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_ukey','（密钥查询）调用成功，调用ukey=$ukey',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','" . date('Y-m-d H:i:s') . "')");
                     return true;
                 } else {
                     // 写入Log
-                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_ukey','（密钥查询）调用失败，调用ukey=$ukey',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_ukey','（密钥查询）调用失败，调用ukey=$ukey',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','" . date('Y-m-d H:i:s') . "')");
                     return false;
                 }
             }
@@ -98,11 +85,11 @@ class ApiFunction
                 // 判断用户是否有权限
                 if ($Result_User_Object->id != null and $Result_User_Object->ban != 1) {
                     // 写入Log
-                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_okey','（密钥查询）调用成功，调用okey=$okey',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_okey','（密钥查询）调用成功，调用okey=$okey',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','" . date('Y-m-d H:i:s') . "')");
                     return true;
                 } else {
                     // 写入Log
-                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_okey','（密钥查询）调用失败，调用okey=$okey',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+                    mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_okey','（密钥查询）调用失败，调用okey=$okey',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','" . date('Y-m-d H:i:s') . "')");
                     return false;
                 }
             }
@@ -127,11 +114,11 @@ class ApiFunction
             $Result_User_Object = mysqli_fetch_object($Result_User);
             if ($Result_User_Object->id != null and $Result_User_Object->ban != 1) {
                 // 写入Log
-                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_userSSID','（用户SSID查询）调用成功，调用ssid=$ssid',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_userSSID','（用户SSID查询）调用成功，调用ssid=$ssid',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','" . date('Y-m-d H:i:s') . "')");
                 return true;
             } else {
                 // 写入Log
-                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_userSSID','（用户SSID查询）调用失败，调用ssid=$ssid',NULL,'" . $this->ip() . "','" . $this->now_time() . "')");
+                mysqli_query($SqlConn, "INSERT INTO " . $setting['TABLE']['logs'] . " (belong,info,remark,ip,time) VALUES ('search_userSSID','（用户SSID查询）调用失败，调用ssid=$ssid',NULL,'" . $_SERVER["REMOTE_ADDR"] . "','" . date('Y-m-d H:i:s') . "')");
                 return false;
             }
         }
