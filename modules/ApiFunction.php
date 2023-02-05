@@ -31,10 +31,10 @@ class ApiFunction
     // 获取密钥
 
     /**
-     * @param string $session 获取 SESSION 值
+     * @param $session
      * @return bool
      */
-    public function Check_Session(string $session): bool {
+    public function Check_Session($session): bool {
         if (empty($session)) return false;
         else {
             global $SqlConn,$setting;
@@ -49,10 +49,10 @@ class ApiFunction
 
     // 获取用户 ukey （普通密钥）
     /**
-     * @param string $ukey 输入用户密钥
+     * @param $ukey
      * @return bool 返回值
      */
-    public function Check_Ukey(string $ukey): bool {
+    public function Check_Ukey($ukey): bool {
         if (preg_match('/^XFUKEY[0-9]{14}[A-za-z0-9]{10}/',$ukey)) {
             // 判断key
             if (empty($ukey)) {
