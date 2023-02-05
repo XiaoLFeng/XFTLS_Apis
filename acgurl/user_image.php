@@ -27,7 +27,7 @@ $GetData = array(
 );
 
 // 函数构建
-if ($ApiFunction->Get_ukey($GetData['ukey'])) {
+if ($ApiFunction->Check_Ukey($GetData['ukey'])) {
     // 获取数据库信息
     $Result_User = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['user']." WHERE ukey='".$GetData['ukey']."'");
     $Result_User_Object = mysqli_fetch_object($Result_User);

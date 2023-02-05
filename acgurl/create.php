@@ -26,7 +26,7 @@ $GetPost = file_get_contents('php://input');
 $PostData = json_decode($GetPost,true);
 
 // 函数配置
-if ($ApiFunction->Get_ukey($PostData['ukey'])) {
+if ($ApiFunction->Check_Ukey($PostData['ukey'])) {
     // 获取数据库信息
     $Result_User = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['user']." WHERE ukey='".$PostData['ukey']."'");
     $Result_User_Object = mysqli_fetch_object($Result_User);

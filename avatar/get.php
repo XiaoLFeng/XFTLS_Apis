@@ -27,7 +27,7 @@ $GetData = array(
 );
 
 // 函数配置
-if ($ApiFunction->Get_ukey($GetData['ukey'])) {
+if ($ApiFunction->Check_Ukey($GetData['ukey'])) {
     // 检查输出
     if (!empty($GetData['uid']) and empty($GetData['email'])) {
         // 数据库检索

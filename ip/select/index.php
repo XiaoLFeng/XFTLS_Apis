@@ -29,7 +29,7 @@ $GetData = array(
 );
 
 // 函数构建
-if ($ApiFunction->Get_ukey($GetData['ukey'])) {
+if ($ApiFunction->Check_Ukey($GetData['ukey'])) {
     // 判断类型
     if ($GetData['type'] == 'ipv4') {
         // 正则判断

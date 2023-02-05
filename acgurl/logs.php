@@ -23,7 +23,7 @@ $GetData = array(
     'key'=>urldecode(htmlspecialchars($_GET['key'])),
 );
 
-if ($ApiFunction->Get_ukey($GetData['ukey'])) {
+if ($ApiFunction->Check_Ukey($GetData['ukey'])) {
     // 从key匹配用户
     $Result_User = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['user']." WHERE `ukey`='".$GetData['ukey']."'");
     $Result_User_Object = mysqli_fetch_object($Result_User);
