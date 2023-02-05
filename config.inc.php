@@ -18,7 +18,7 @@ $setting['WEB']['Start'] = TRUE;
 // 站点开启 Debug 模式
 $setting['WEB']['DeBUG'] = FALSE;
 // 站点通信密钥
-$setting['ssid'] = "20040227";
+$setting['Session'] = "YNily20040227ZCW";
 // 验证码有效时间
 $setting['CAPTCHA_TIME'] = 900;
 
