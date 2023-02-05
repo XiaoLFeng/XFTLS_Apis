@@ -29,11 +29,12 @@ class ApiFunction
         }
     }
     // 获取密钥
+
     /**
-     * @return string
+     * @param string $session 获取 SESSION 值
+     * @return bool
      */
-    public function Check_Session(string $session): string
-    {
+    public function Check_Session(string $session): bool {
         if (empty($session)) return false;
         else {
             global $SqlConn,$setting;
@@ -51,7 +52,7 @@ class ApiFunction
      * @param string $ukey 输入用户密钥
      * @return bool 返回值
      */
-    public function Get_ukey(string $ukey): bool {
+    public function Check_Ukey(string $ukey): bool {
         if (preg_match('/^XFUKEY[0-9]{14}[A-za-z0-9]{10}/',$ukey)) {
             // 判断key
             if (empty($ukey)) {

@@ -32,7 +32,7 @@ $GetData = array(
 
 // 函数构建
 // POST方法
-if ($ApiFunction->Get_ukey($PostData['ukey'])) {
+if ($ApiFunction->Check_Ukey($PostData['ukey'])) {
     // 检查用户输入内容
     if ($User->login_input_data($PostData['data']['P_email'],$PostData['data']['P_username'],$PostData['data']['P_password']) == 'TRUE') {
         // 获取数据库信息
@@ -50,6 +50,7 @@ if ($ApiFunction->Get_ukey($PostData['ukey'])) {
                     'info'=>'数据验证成功'
                 );
                 // 输出数据
+                mysqli_query($SqlConn,"UPDATE ".$setting['TABLE']['user']." SET `lastlogin`='".date('Y-m-d H:i:s')."',`lastip`='".$_SERVER['REMOTE_ADDR']."' WHERE `id`=".$Result_User_Object->id);
                 $ApiFunction->logs('api_auth','用户登录',1);
             } else {
                 // 编译数据
@@ -85,7 +86,7 @@ if ($ApiFunction->Get_ukey($PostData['ukey'])) {
         header("HTTP/1.1 403 Forbidden");
     }
 // GET方法
-} elseif ($ApiFunction->Get_ukey($GetData['ukey'])) {
+} elseif ($ApiFunction->Check_Ukey($GetData['ukey'])) {
     // 检查用户输入内容
     if ($User->login_input_data($GetData['email'],$GetData['username'],$GetData['password']) == 'TRUE') {
         // 获取数据库信息
