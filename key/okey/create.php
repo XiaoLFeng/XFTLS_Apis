@@ -7,6 +7,7 @@
 /**
  * @var mysqli $SqlConn 数据库链接参数
  * @var array $setting 参数配置
+ * @var array $data 数组转Json
  */
 
 // 载入头
@@ -26,9 +27,9 @@ $PostData = file_get_contents('php://input');
 $PostData = json_decode($PostData,true);
 
 // 函数构建
-if ($PostData['ssid'] == $ApiFunction->Get_SSID()) {
+if ($ApiFunction->Check_Session($PostData['session'])) {
     // 判断 UKey
-    if ($ApiFunction->Get_ukey($PostData['data']['P_ukey'])) {
+    if ($ApiFunction->Check_Ukey($PostData['data']['P_ukey'])) {
         // 数据库获取数据
         $Result_User = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['user']." WHERE ukey='".$PostData['data']['P_ukey']."'");
         $Result_User_Object = mysqli_fetch_object($Result_User);
@@ -37,7 +38,8 @@ if ($PostData['ssid'] == $ApiFunction->Get_SSID()) {
 
         // 判断是否存在
         if ($Result_OKey_Object->id == null) {
-            if (mysqli_query($SqlConn,"INSERT INTO ".$setting['TABLE']['okey']." (`user_id`,`okey`,`time`) VALUES ('".$Result_User_Object->id."','".$Key->okey_create(10)."','".date('Y-m-d')."')")) {
+            $create_okey = $Key->okey_create(10);
+            if (mysqli_query($SqlConn,"INSERT INTO ".$setting['TABLE']['okey']." (`user_id`,`okey`,`time`) VALUES ('".$Result_User_Object->id."','".$create_okey."','".date('Y-m-d H:i:s')."')")) {
                 // 编译数据
                 $data = array(
                     'output'=>'SUCCESS',
@@ -45,8 +47,8 @@ if ($PostData['ssid'] == $ApiFunction->Get_SSID()) {
                     'info'=>'创建成功'
                 );
                 // 输出数据
+                $Mail->Mailer('okey_create',$Result_User_Object->email,$create_okey);
                 $ApiFunction->logs('okey_create','创建密钥',1);
-                header("HTTP/1.1 403 Forbidden");
             } else {
                 // 编译数据
                 $data = array(
@@ -83,9 +85,9 @@ if ($PostData['ssid'] == $ApiFunction->Get_SSID()) {
 } else {
     // 编译数据
     $data = array(
-        'output'=>'SSID_DENY',
+        'output'=>'SESSION_DENY',
         'code'=>403,
-        'info'=>'参数 Post[ssid] 缺失/错误'
+        'info'=>'参数 Post[session] 缺失/错误'
     );
     // 输出数据
     $ApiFunction->logs('okey_create','密钥检查',0,'Post_ssid');
