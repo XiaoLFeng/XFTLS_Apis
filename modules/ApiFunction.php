@@ -32,13 +32,18 @@ class ApiFunction
     /**
      * @return string
      */
-    public function Get_SSID(): string
+    public function Check_Session(string $session): string
     {
-        global $SqlConn,$setting;
-        // 密钥获取
-        $result_ssid = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['info']." WHERE info='session'");
-        $SsidObject = mysqli_fetch_object($result_ssid);
-        return $SsidObject->text;
+        if (empty($session)) return false;
+        else {
+            global $SqlConn,$setting;
+            // 密钥获取
+            $Result_Session = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['info']." WHERE info='session'");
+            $Result_Session_Object = mysqli_fetch_object($Result_Session);
+            if ($Result_Session_Object->text == $session) return true;
+            else return false;
+        }
+
     }
 
     // 获取用户 ukey （普通密钥）
