@@ -22,7 +22,7 @@ $GetSSID = htmlspecialchars($_GET['ssid']);
 $GetUkey = htmlspecialchars($_GET['ukey']);
 
 // 函数构建
-if ($GetSSID == $ApiFunction->Get_SSID()) {
+if ($ApiFunction->Check_Session($GetSSID)) {
     // 数据库提取信息
     $Result_User = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['user']." WHERE ".use_type());
     $Result_User_Object = mysqli_fetch_object($Result_User);

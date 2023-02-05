@@ -20,7 +20,7 @@ $ApiFunction = new ApiFunction();
 $GetSSID = urldecode(htmlspecialchars($_GET['ssid']));
 
 // 函数构建
-if ($GetSSID == $ApiFunction->Get_SSID()) {
+if ($ApiFunction->Check_Session($GetSSID)) {
     // 从数据库获取信息
     $Result_Info = mysqli_query($SqlConn,"SELECT * FROM ".$setting['TABLE']['info']." ORDER BY id");
     while ($Result_Info_Object = mysqli_fetch_object($Result_Info)) {
