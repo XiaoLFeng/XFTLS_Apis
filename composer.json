@@ -1,0 +1,17 @@
+{
+  "name": "xf_tls/xf_apis",
+  "description": "XF_TLS",
+  "minimum-stability": "stable",
+  "license": "MIT License",
+  "authors": [
+    {
+      "name": "xiao_lfeng",
+      "email": "gm@x-lf.cn"
+    }
+  ],
+  "require": {
+    "aliyuncs/oss-sdk-php": "~2.4",
+    "ext-mysqli": "*",
+    "ext-json": "*"
+  }
+}
