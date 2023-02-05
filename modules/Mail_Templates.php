@@ -23,8 +23,7 @@ class Mail_Templates
     // 发送验证码
     public function Captcha($G_code, $G_email, $G_endTime, $G_usetime): string {
         $G_endTimes = date("Y-m-d H:i:s",$G_endTime+$G_usetime);
-        $G_usetime = $G_usetime/60;
-        $G_ip = $_SERVER['REMOTE_ADDR'];
+        $G_usetime = $G_usetime/60;;
         $G_year = date("Y");
         $G_date = date("Y-m-d H:i:s");
         return <<<EOF
@@ -59,11 +58,6 @@ class Mail_Templates
                                     您的验证码为：<strong>$G_code</strong><br/>
                                     您的验证码 <strong>$G_usetime</strong> 分钟内有效<br/>
                                     有效期至：$G_endTimes
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0px 10px 0px 10px;color: #000000; font-family: Arial, sans-serif; font-size: 22px;">
-                                    <h5>您此次操作的IP为：<strong><a style="text-decoration: none;color: #198754;" href="https://www.ip138.com/iplookup.asp?ip=$G_ip &action=2"> $G_ip </a></strong></h5>
                                 </td>
                             </tr>
                         </table>
@@ -130,11 +124,6 @@ class Mail_Templates
                             <td style="padding: 0px 5px 5px 0px;color: #000000; font-family: Arial, sans-serif; font-size: 15px;">
                                 感谢您注册 <a href="https://www.x-lf.cn/" style="text-decoration: none;color: #198754;">筱锋工具箱（XF_TLS）</a> ，在这里你可以体验简便的工具操作，以及通用API调用。<br/>
                                 更多操作请在工具箱控制台中进行查看~
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0px 5px 0px 0px;color: #000000; font-family: Arial, sans-serif; font-size: 22px;">
-                                <h5>您此次操作的IP为：<strong><a style="text-decoration: none;color: #198754;" href="https://www.ip138.com/iplookup.asp?ip=$G_ip &action=2"> $G_ip </a></strong></h5>
                             </td>
                         </tr>
                         <tr>
@@ -209,11 +198,6 @@ class Mail_Templates
                             </td>
                         </tr>
                         <tr>
-                            <td style="padding: 0px 5px 0px 0px;color: #000000; font-family: Arial, sans-serif; font-size: 22px;">
-                                <h5>您此次操作的IP为：<strong><a style="text-decoration: none;color: #198754;" href="https://www.ip138.com/iplookup.asp?ip=$G_ip &action=2"> $G_ip </a></strong></h5>
-                            </td>
-                        </tr>
-                        <tr>
                             <td style="padding: 0px 5px 5px 0px;color: #6c6c6c; font-family: Arial, sans-serif; font-size: 15px;">
                                 若您未在本站操作，则您的邮箱或手机号验证码发生了泄露。建议您修改密码或检查设施。
                             </td>
@@ -282,11 +266,6 @@ class Mail_Templates
                         <tr>
                             <td style="padding: 0px 5px 5px 0px;color: #000000; font-family: Arial, sans-serif; font-size: 15px;">
                                 您在 <a href="https://www.x-lf.cn/" style="text-decoration: none;color: #198754;">筱锋工具箱（XF_TLS）</a>站点中，已成功注销账户！
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0px 5px 0px 0px;color: #000000; font-family: Arial, sans-serif; font-size: 22px;">
-                                <h5>您此次操作的IP为：<strong><a style="text-decoration: none;color: #198754;" href="https://www.ip138.com/iplookup.asp?ip=$G_ip &action=2"> $G_ip </a></strong></h5>
                             </td>
                         </tr>
                         <tr>
