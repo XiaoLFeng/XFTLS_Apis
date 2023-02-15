@@ -63,7 +63,7 @@ if ($ApiFunction->Check_Ukey($PostData['ukey'])) {
                 'info'=>'参数 Post[name/open] 缺失/错误，错误参数：'.$Check->Service_Acgurl_Create($PostData['data']['P_name'],$PostData['data']['P_open']),
             );
             // 输出数据
-            $ApiFunction->logs('service_acgurl_create','参数错误',0,'Post_ukey['.$Check->Service_Acgurl_Create($PostData['data']['P_name'],$PostData['data']['P_open']).']');
+            $ApiFunction->logs('service_acgurl_create','参数错误',0,'Post_data['.$Check->Service_Acgurl_Create($PostData['data']['P_name'],$PostData['data']['P_open']).']');
             header("HTTP/1.1 403 Forbidden");
         }
     } else {
