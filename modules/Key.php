@@ -8,8 +8,7 @@ class Key
      * @return string
      */
     public function ukey_create($long_salt): string {
-        $salts = $this->get_salt($long_salt);
-        return "XFUKEY".rand(1000,9999).time().$salts;
+        return "XFUKEY".rand(1000,9999).time(). $this->get_salt($long_salt);
     }
 
     /**
@@ -18,9 +17,8 @@ class Key
      * @return string
      */
     public function ssid_create($long_salt): string {
-        $salts = $this->get_salt($long_salt);
         // 定义 ukey
-        return "XFSSID".rand(1000,9999).time().$salts;
+        return "XFSSID".rand(1000,9999).time(). $this->get_salt($long_salt);
     }
 
     /**
@@ -30,8 +28,7 @@ class Key
      */
     public function service_acgurl_access_key($long_salt): string
     {
-        $salts = $this->get_salt($long_salt);
-        return "XFACG".time().$salts;
+        return "XFACG".time(). $this->get_salt($long_salt);
     }
 
     /**
@@ -40,8 +37,25 @@ class Key
      * @return string
      */
     public function okey_create($long_salt): string {
-        $salts = $this->get_salt($long_salt);
-        return "XFOKEY".rand(1000,9999).time().$salts;
+        return "XFOKEY".rand(1000,9999).time(). $this->get_salt($long_salt);
+    }
+
+    /**
+     * 生成新 网站分析sid
+     * @param $long_salt
+     * @return string
+     */
+    public function service_analytics_create($long_salt): string {
+        return "AYSID".time(). $this->get_salt($long_salt);
+    }
+
+    /**
+     * 生成新 网站分析sid
+     * @param $long_salt
+     * @return string
+     */
+    public function service_analytics_user_create($long_salt): string {
+        return "AYUSER".time(). $this->get_salt($long_salt);
     }
 
     /**
