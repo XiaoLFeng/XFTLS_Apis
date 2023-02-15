@@ -59,6 +59,22 @@ class Key
     }
 
     /**
+     * 生成一组随机字符
+     * @param int $length 输入需要输出字符串的长度
+     * @return string 返回字符内容包含 A-Z,a-z,0-9 的一串内容
+     */
+    public function Rand_String(int $length): string {
+        $string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $strlen = strlen($string)-1;
+        $rand_string = null;
+        for ($i=0; $i<$length; $i++) {
+            $number = mt_rand(0,$strlen);
+            $rand_string .= $string[$number];
+        }
+        return $rand_string;
+    }
+
+    /**
      * 创建密钥模板
      * @param $long_salt
      * @return string|null

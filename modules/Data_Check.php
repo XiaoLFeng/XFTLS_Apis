@@ -62,4 +62,24 @@ class Data_Check
             } else return "DOMAIN_FALSE";
         } else return "NAME_FALSE";
     }
+
+    /**
+     * 创建短链跳转
+     * @param string $url 填入地址
+     * @return bool 如果是地址符合正则表达式则返回 TRUE（布尔值），否则返回 FALSE（布尔值）
+     */
+    public function Service_Chain_Create(string $url): bool {
+        if (preg_match('/[a-zA-Z]+:\/\/[^\s]*/',$url)) return true;
+        else return false;
+    }
+
+    /**
+     * 检查短链跳转
+     * @param string $url_id 填入短链匹配段
+     * @return bool 检查是否符合正则表达式，负责返回 TRUE（布尔值），否则返回 FALSE（布尔值）
+     */
+    public function Service_Chain_Select(string $url_id): bool {
+        if (preg_match('/^[A-Za-z0-9]{5}$/',$url_id)) return true;
+        else return false;
+    }
 }
