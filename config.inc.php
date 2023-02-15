@@ -53,12 +53,19 @@ $setting['TABLE']['captcha'] = 'tls_captcha';
 $setting['TABLE']['ipv4'] = 'tls_ipv4_list';
 // TLS_IPv6数据表
 $setting['TABLE']['ipv6'] = 'tls_ipv6_list';
+
 // Service_Acgurl数据表
 $setting['TABLE']['Service']['Acgurl'] = 'tls_service_acgurl';
 // Service_Acgurl_Logs数据表
 $setting['TABLE']['Service']['Acgurl_log'] = 'tls_service_acgurl_logs';
 // Service_Acgurl_Logs_Cache数据表
 $setting['TABLE']['Service']['Acgurl_cache'] = 'tls_service_acgurl_logs_cache';
+
+// Service_Analytics数据表
+$setting['TABLE']['Service']['Analytics'] = 'tls_analytics';
+
+// Service_Chain数据表
+$setting['TABLE']['Service']['Chain'] = 'tls_chain';
 
 /******************* 邮箱管理 *******************/
 // 邮箱地址
